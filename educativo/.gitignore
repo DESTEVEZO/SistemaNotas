@@ -1,4 +1,4 @@
-HELP.md
+# Ignore Maven build output
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -21,13 +21,18 @@ target/
 
 ### NetBeans ###
 /nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
+
+# Ignorar node_modules y archivos no deseados
+node_modules/
+"\357\200\233[C"
+"\357\200\233[C.pub"
