@@ -1,11 +1,11 @@
-// src/components/InscripcionForm.js
+// src/components/inscripciones/InscripcionForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const InscripcionForm = () => {
+const InscripcionForm = ({ onInscripcionCreada }) => {
   const [inscripcion, setInscripcion] = useState({
-    estudianteId: '',
-    cursoId: '',
+    estudiante: '',
+    curso: '',
   });
 
   const handleChange = (e) => {
@@ -15,7 +15,8 @@ const InscripcionForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/inscripciones', inscripcion); // Endpoint para crear inscripción
+      const response = await axios.post('/inscripciones', inscripcion);
+      onInscripcionCreada(response.data); // Notificar al componente padre
       alert('Inscripción exitosa');
     } catch (error) {
       console.error("Error al inscribir:", error);
@@ -26,11 +27,11 @@ const InscripcionForm = () => {
     <form onSubmit={handleSubmit}>
       <label>
         ID del Estudiante:
-        <input type="text" name="estudianteId" value={inscripcion.estudianteId} onChange={handleChange} required />
+        <input type="text" name="estudiante" value={inscripcion.estudiante} onChange={handleChange} required />
       </label>
       <label>
         ID del Curso:
-        <input type="text" name="cursoId" value={inscripcion.cursoId} onChange={handleChange} required />
+        <input type="text" name="curso" value={inscripcion.curso} onChange={handleChange} required />
       </label>
       <button type="submit">Inscribirse</button>
     </form>
